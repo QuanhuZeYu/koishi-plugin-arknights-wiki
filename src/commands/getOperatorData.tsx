@@ -20,9 +20,9 @@ async function getOperatorData(argv:Argv, message:string) {
             {/* 将不同数组的处理逻辑封装为函数并并行执行 */}
             {'新增干员:'}
             {(await createItemElements(recent))}
-            {'\n==========\n可兑换干员:'}
+            {'\n\n==========\n可兑换干员:'}
             {(await createItemElements(v))}
-            {'\n==========\n新出时装:'}
+            {'\n\n==========\n新出时装:'}
             {(await createItemElements(newCostumes))}
         </message>
     )
