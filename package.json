@@ -1,7 +1,7 @@
 {
   "name": "@quanhuzeyu/koishi-plugin-arknights-wiki",
   "description": "获取wiki页面的信息；获取每日开放关卡时间、当前活动、当期干员、卡池信息等",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "homepage": "https://github.com/QuanhuZeYu/koishi-plugin-arknights-wiki.git",
