@@ -4,12 +4,23 @@
   "version": "0.0.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
+  "homepage": "https://github.com/QuanhuZeYu/koishi-plugin-arknights-wiki.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QuanhuZeYu/koishi-plugin-arknights-wiki.git"
+  },
   "files": [
     "lib",
     "dist"
   ],
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "node build.js",
+    "clean": "node clean.js",
+    "allpub": "npm run build && npm run pubgit && npm run pubnpm",
+    "pubgit": "npm publish --registry=https://npm.pkg.github.com --access=public",
+    "pubnpm": "npm publish --registry=https://registry.npmjs.org --access=public"
+  },
   "keywords": [
     "chatbot",
     "koishi",
@@ -20,5 +31,8 @@
   },
   "peerDependencies": {
     "koishi": "^4.17.11"
+  },
+  "dependencies": {
+    "@satorijs/element": "^3.1.7"
   }
 }
