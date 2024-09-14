@@ -1,5 +1,6 @@
 import Data from "../Data"
-import { imgLinkPage, todayData} from "../interface/Page/home"
+import { imgLinkPage, operatorData, operatorInfo, todayData } from "../interface/Page/home"
+import tools from "../tools";
 
 
 async function getHomeData() {
@@ -117,12 +118,84 @@ async function getTodayLevelData() {
     }
 }
 
-// async function 
+async function getOperatorsInfo() {
+    const logger = Data.baseData.logger
+    const curPage = Data.baseData.curPage
+
+    const operatorData:operatorData = await curPage.evaluate(async () => {
+        const operatorTitleRegion = Array.from(document.querySelectorAll('h2')).filter(h2 => h2.textContent.includes('干员'))
+        const operatorRegion = operatorTitleRegion[0].nextElementSibling
+
+        const recentAddRegion = Array.from(operatorRegion.querySelectorAll('div')).filter(div => div.textContent.includes('近期新增'))[0]
+        const voucherRedemptionRegion = Array.from(operatorRegion.querySelectorAll('div')).filter(div => div.textContent.includes('凭证兑换'))[0]
+        const newCostumesRegion = Array.from(operatorRegion.querySelectorAll('div')).filter(div => div.textContent.includes('新增时装'))[0]
+
+        const recentAdd_a_s = Array.from(recentAddRegion.querySelectorAll('span a'))
+        const recentAddOperatorsInfo: operatorInfo[] = recentAdd_a_s.map((a: HTMLElement) => {
+            const iconRegion = Array.from(a.querySelectorAll('img'))
+            const name = a.title
+            const charIconUrl = iconRegion[0].src
+            const leveIconUrl = iconRegion[1].src
+            const typeIconUrl = iconRegion[2].src
+            const operatorInfo: operatorInfo = {
+                name: name,
+                charIconUrl: charIconUrl,
+                leveIconUrl: leveIconUrl,
+                typeIconUrl: typeIconUrl
+            }
+            return operatorInfo
+        })
+
+        const voucherRedemption_a_s = Array.from(voucherRedemptionRegion.querySelectorAll('span a'))
+        const voucherRedemptionOperatorsInfo: operatorInfo[] = voucherRedemption_a_s.map((a: HTMLElement) => {
+            const duiSpan = a.querySelector('span > span')  // 暂时不知道这个数据是表示什么
+            const iconRegion = Array.from(a.querySelectorAll('img'))
+            const name = a.title
+            const charIconUrl = iconRegion[0].src
+            const leveIconUrl = iconRegion[1].src
+            const typeIconUrl = iconRegion[2].src
+            const operatorInfo: operatorInfo = {
+                name: name,
+                charIconUrl: charIconUrl,
+                leveIconUrl: leveIconUrl,
+                typeIconUrl: typeIconUrl
+            }
+            return operatorInfo
+        })
+
+        const newCostumes_a_s = Array.from(newCostumesRegion.querySelectorAll('span a'))
+        const newCostumesOperatorsInfo: operatorInfo[] = newCostumes_a_s.map((a: HTMLElement) => {
+            const iconRegion = Array.from(a.querySelectorAll('img'))
+            const name = a.title
+            const charIconUrl = iconRegion[0].src
+            const leveIconUrl = iconRegion[1].src
+            const typeIconUrl = iconRegion[2].src
+            const operatorInfo: operatorInfo = {
+                name: name,
+                charIconUrl: charIconUrl,
+                leveIconUrl: leveIconUrl,
+                typeIconUrl: typeIconUrl
+            }
+            return operatorInfo
+        })
+
+        const operatorData: operatorData = {
+            recentData: recentAddOperatorsInfo,
+            voucherRedemptionData: voucherRedemptionOperatorsInfo,
+            newCostumesData: newCostumesOperatorsInfo
+        }
+
+        return operatorData
+    })
+    const handledData = await tools.handleOperatorsData.handleOperatorsData(operatorData)
+    return handledData
+}
 
 const homePage = {
     getHomeData,
     getCarouselData,
-    getTodayLevelData
+    getTodayLevelData,
+    getOperatorsInfo,
 }
 
 export default homePage
