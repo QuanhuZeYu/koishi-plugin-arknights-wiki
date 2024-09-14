@@ -15,7 +15,7 @@ async function getOperatorData(argv:Argv, message:string) {
     const newCostumes = operatorData.newCostumes
 
     const messageStruct = (
-        <message>
+        <message forward={baseData.config.forward}>
             <quote id={argv.session.messageId} />
             {/* 将不同数组的处理逻辑封装为函数并并行执行 */}
             {'新增干员:'}

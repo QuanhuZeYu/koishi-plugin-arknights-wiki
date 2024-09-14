@@ -13,7 +13,7 @@ async function getTodayLevelData(argv:Argv, message:string) {
     // const img = h.image(todayData.table, 'image/png')
     const imgE = <img src={'data:image/png;base64,'+ todayData.table.toString('base64')} />
     const info = todayData.info.join('\n')
-    const messageStructer = <message>
+    const messageStructer = <message forward={Data.baseData.config.forward}>
         {imgE}
         {info}
     </message>

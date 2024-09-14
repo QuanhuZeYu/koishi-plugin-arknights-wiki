@@ -10,9 +10,13 @@ export const inject = {
 	required: ['puppeteer', 'QhzySharp']
 }
 
-export interface Config { }
+export interface Config { 
+	forward: boolean
+}
 
-export const Config: Schema<Config> = Schema.object({})
+export const Config: Schema<Config> = Schema.object({
+	forward: Schema.boolean().default(true).description('是否以转发形式发送')
+})
 
 export function apply(ctx: Context) {
 	Event.baseDataController.baseDataSetup(ctx)

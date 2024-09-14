@@ -21,7 +21,7 @@ async function getCarouselData(argv:Argv, message:string) {
         structArr.push(p)
     }
     structArr.join('')
-    const messageStructer = <message>
+    const messageStructer = <message forward={Data.baseData.config.forward}>
         {structArr}
     </message>
 

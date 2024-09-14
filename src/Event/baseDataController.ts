@@ -13,6 +13,7 @@ async function baseDataSetup(ctx:Context) {
     baseData.browserINST = ctx.puppeteer.browser as any as Browser
     const logger = baseData.logger = ctx.logger
     baseData.sharp = ctx.QhzySharp.Sharp
+    baseData.config = ctx.config
     logger.info(`插件基础数据已加载完毕`)
     await initPage()
 }
