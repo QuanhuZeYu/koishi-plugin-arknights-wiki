@@ -66,6 +66,10 @@ async function getCarouselData() {
     }
 }
 
+/**
+ * 获取今日关卡开放数据
+ * @returns 
+ */
 async function getTodayLevelData() {
     const logger = Data.baseData.logger;
     const curPage = Data.baseData.curPage;
@@ -108,10 +112,12 @@ async function getTodayLevelData() {
         };
         return todayData;
     } catch (error) {
-        logger.error('获取今日数据失败:', error);
+        logger.error('获取今日数据失败:', error)
         return { table: null, info: [] };
     }
 }
+
+// async function 
 
 const homePage = {
     getHomeData,

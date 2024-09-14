@@ -9,7 +9,7 @@ async function getTodayLevelData(argv:Argv, message:string) {
     const logger = Data.baseData.logger
 
     const todayData = await page.homePage.getTodayLevelData()
-    logger.info(todayData)
+    // logger.info(todayData)
     // const img = h.image(todayData.table, 'image/png')
     const imgE = <img src={'data:image/png;base64,'+ todayData.table.toString('base64')} />
     const info = todayData.info.join('\n')
