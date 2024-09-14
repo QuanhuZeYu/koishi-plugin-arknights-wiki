@@ -2,7 +2,7 @@ import { Context } from "koishi";
 import Data from "../Data";
 import {} from 'koishi-plugin-puppeteer'
 import type { Browser } from "puppeteer";
-import initPage from "./__initMainPage";
+import initPage from "./Private/__initMainPage";
 
 /**
  * 初始化 browserINST logger

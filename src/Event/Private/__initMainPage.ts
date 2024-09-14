@@ -1,5 +1,5 @@
 import type { Browser, Page } from "puppeteer";
-import Data from "../Data";
+import Data from "../../Data";
 
 
 

@@ -24,6 +24,14 @@ export function apply(ctx: Context) {
 			logger.info(`正在执行 <当前资讯> 命令`)
 			argv.session.send('正在获取最新资讯...')
 			commands.getCarouselData(argv, message)
+		});
+	
+	argCMD.subcommand('今日信息', '查看今日开放的关卡信息').alias('ark-today')
+		.action(async (argv,message) => {
+			const logger = Data.baseData.logger
+			logger.info(`正在执行 <今日信息> 命令`)
+			argv.session.send('正在获取今日信息...')
+			await commands.getTodayLevelData(argv, message)
 		})
 
 }
