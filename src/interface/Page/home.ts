@@ -3,7 +3,7 @@ export interface imgLinkPage {
     link: string
 }
 
-export interface todayData {
+export type todayData = {
     table: Buffer
     info: string[]
 }
